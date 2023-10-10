@@ -140,4 +140,4 @@ The following individuals have contributed to this project:
 * [Jemima Aisha Okouya](https://github.com/Ash-beca "@Ash-beca")
 * [Jerome S. Patrick](https://github.com/JeromeP93 "@JeromeP93")
 
-Please refer to the [AUTHORS]() file for more details about authors.
+Please refer to the [AUTHORS](https://github.com/Ash-beca/AirBnB_clone/blob/main/AUTHORS "Authors File") file for more details about authors.
