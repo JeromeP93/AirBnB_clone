@@ -1,7 +1,5 @@
 # 0x00. AirBnB clone - The console
 
-# 0x00. AirBnB clone - The console
-
 ## Description
 
 This is the ALX AirBnB Clone project, focusing on creating a command-line interface (CLI) or console to manage AirBnB objects. The project will gradually evolve to encompass various aspects of web development, including HTML/CSS templating, database storage, APIs, and front-end integration.
