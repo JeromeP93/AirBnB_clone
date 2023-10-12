@@ -74,3 +74,45 @@ class HBNBCommand(cmd.Cmd):
                     return argdict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
+    
+    def do_quit(self, arg):
+    """Exit the program using the 'quit' command."""
+    return True
+
+    def do_EOF(self, arg):
+        """Exit the program when the EOF signal is received."""
+        print("")
+        return True
+
+    def do_create(self, arg):
+        """Create a new class instance and print its ID.
+
+        Usage: create <class>
+        """
+        argl = parse(arg)
+        if len(argl) == 0:
+            print("** class name missing **")
+        elif argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        else:
+            print(eval(argl[0])().id)
+            storage.save()
+
+    def do_show(self, arg):
+        """Display the string representation of a class instance of a given ID.
+
+        Usage: show <class> <id> or <class>.show(<id>)
+        """
+        argl = parse(arg)
+        objdict = storage.all()
+        if len(argl) == 0:
+            print("** class name missing **")
+        elif argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        elif len(argl) == 1:
+            print("** instance id missing **")
+        elif "{}.{}".format(argl[0], argl[1]) not in objdict:
+            print("** no instance found **")
+        else:
+            print(objdict["{}.{}".format(argl[0], argl[1])])
+
