@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
         prompt (str): The command prompt.
     """
 
-        prompt = "(hbnb) "
+    prompt = "(hbnb) "
     __classes = {
         "BaseModel",
         "User",
@@ -76,8 +76,8 @@ class HBNBCommand(cmd.Cmd):
         return False
     
     def do_quit(self, arg):
-    """Exit the program using the 'quit' command."""
-    return True
+        """Exit the program using the 'quit' command."""
+        return True
 
     def do_EOF(self, arg):
         """Exit the program when the EOF signal is received."""
@@ -116,3 +116,50 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(objdict["{}.{}".format(argl[0], argl[1])])
 
+    def do_destroy(self, arg):
+        """Delete a class instance of a given ID.
+
+        Usage: destroy <class> <id> or <class>.destroy(<id>)
+        """
+        argl = parse(arg)
+        objdict = storage.all()
+        if len(argl) == 0:
+            print("** class name missing **")
+        elif argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        elif len(argl) == 1:
+            print("** instance id missing **")
+        elif "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
+            print("** no instance found **")
+        else:
+            del objdict["{}.{}".format(argl[0], argl[1])]
+            storage.save()
+
+    def do_all(self, arg):
+        """Display string representations of all instances of a given class or all instantiated objects.
+
+        Usage: all or all <class> or <class>.all()
+        """
+        argl = parse(arg)
+        if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        else:
+            objl = []
+            for obj in storage.all().values():
+                if len(argl) > 0 and argl[0] == obj.__class__.__name__:
+                    objl.append(obj.__str__())
+                elif len(argl) == 0:
+                    objl.append(obj.__str__())
+            print(objl)
+
+    def do_count(self, arg):
+        """Retrieve the number of instances of a given class.
+
+        Usage: count <class> or <class>.count()
+        """
+        argl = parse(arg)
+        count = 0
+        for obj in storage.all().values():
+            if argl[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
