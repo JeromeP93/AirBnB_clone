@@ -22,7 +22,7 @@ class TestReviewInstantiation(unittest.TestCase):
         self.assertEqual(Review, type(Review()))
 
     def test_new_instance_stored_in_objects(self):
-        """Test that a newly created Review instance is stored in the 'objects' attribute."""
+        """Test storing a new Review instance in 'objects' attribute."""
         self.assertIn(Review(), models.storage.all().values())
 
     def test_id_is_public_str(self):
@@ -30,11 +30,11 @@ class TestReviewInstantiation(unittest.TestCase):
         self.assertEqual(str, type(Review().id))
 
     def test_created_at_is_public_datetime(self):
-        """Test that the 'created_at' attribute of Review is a public datetime object."""
+        """Test Review's 'created_at' as a public datetime object."""
         self.assertEqual(datetime, type(Review().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        """Test that the 'updated_at' attribute of Review is a public datetime object."""
+        """Test Review's 'created_at' as a public datetime object."""
         self.assertEqual(datetime, type(Review().updated_at))
 
     def test_place_id_is_public_class_attribute(self):
@@ -65,14 +65,14 @@ class TestReviewInstantiation(unittest.TestCase):
         self.assertNotEqual(rv1.id, rv2.id)
 
     def test_different_created_at_for_two_reviews(self):
-        """Test that two Review instances have different 'created_at' values."""
+        """Test different 'created_at' values for two Reviews."""
         rv1 = Review()
         sleep(0.05)
         rv2 = Review()
         self.assertLess(rv1.created_at, rv2.created_at)
 
     def test_different_updated_at_for_two_reviews(self):
-        """Test that two Review instances have different 'updated_at' values."""
+        """Test different 'updated_at' values for two Reviews."""
         rv1 = Review()
         sleep(0.05)
         rv2 = Review()
@@ -116,14 +116,14 @@ class TestReviewSave(unittest.TestCase):
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Set up by renaming 'file.json' to 'tmp' if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and restoring 'tmp'."""
+        """Clean up by removing 'file.json' and restoring 'tmp'."""
         try:
             os.remove("file.json")
         except IOError:
@@ -142,7 +142,7 @@ class TestReviewSave(unittest.TestCase):
         self.assertLess(first_updated_at, rv.updated_at)
 
     def test_two_saves(self):
-        """Test that consecutive 'save' calls update the 'updated_at' attribute."""
+        """Test consecutive 'save' calls update 'updated_at' attribute.."""
         rv = Review()
         sleep(0.05)
         first_updated_at = rv.updated_at
@@ -192,7 +192,7 @@ class TestReviewToDict(unittest.TestCase):
         self.assertIn("my_number", rv.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """Test that datetime attributes in 'to_dict' are represented as strings."""
+        """Test datetime attributes in 'to_dict' as string representation."""
         rv = Review()
         rv_dict = rv.to_dict()
         self.assertEqual(str, type(rv_dict["id"]))
@@ -214,7 +214,7 @@ class TestReviewToDict(unittest.TestCase):
         self.assertDictEqual(rv.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """Test that 'to_dict' and '__dict__' are not the same for a Review instance."""
+        """Check 'to_dict' and 'dict' inequality for Review instance."""
         rv = Review()
         self.assertNotEqual(rv.to_dict(), rv.__dict__)
 

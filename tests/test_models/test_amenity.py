@@ -22,7 +22,7 @@ class TestAmenity_instantiation(unittest.TestCase):
         self.assertEqual(Amenity, type(Amenity()))
 
     def test_new_instance_stored_in_objects(self):
-        """Test that a newly created Amenity instance is stored in the 'objects' attribute."""
+        """Test new Amenity in 'objects' attribute."""
         self.assertIn(Amenity(), models.storage.all().values())
 
     def test_id_is_public_str(self):
@@ -30,11 +30,11 @@ class TestAmenity_instantiation(unittest.TestCase):
         self.assertEqual(str, type(Amenity().id))
 
     def test_created_at_is_public_datetime(self):
-        """Test that the 'created_at' attribute of Amenity is a public datetime object."""
+        """Test 'created_at' as public datetime in Amenity."""
         self.assertEqual(datetime, type(Amenity().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        """Test that the 'updated_at' attribute of Amenity is a public datetime object."""
+        """Test 'updated_at' as public datetime in Amenity."""
         self.assertEqual(datetime, type(Amenity().updated_at))
 
     def test_name_is_public_class_attribute(self):
@@ -51,14 +51,14 @@ class TestAmenity_instantiation(unittest.TestCase):
         self.assertNotEqual(am1.id, am2.id)
 
     def test_different_created_at_for_two_amenities(self):
-        """Test that two Amenity instances have different 'created_at' values."""
+        """Test different 'created_at' for two Amenity instances."""
         am1 = Amenity()
         sleep(0.05)
         am2 = Amenity()
         self.assertLess(am1.created_at, am2.created_at)
 
     def test_different_updated_at_for_two_amenities(self):
-        """Test that two Amenity instances have different 'updated_at' values."""
+        """Test different 'updated_at' for two Amenity instances."""
         am1 = Amenity()
         sleep(0.05)
         am2 = Amenity()
@@ -102,14 +102,14 @@ class TestAmenitySave(unittest.TestCase):
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Set up by renaming 'file.json' to 'tmp' if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and renaming 'tmp' to 'file.json'."""
+        """Cleanup by removing 'file.json' and renaming 'tmp' to 'file.json'"""
         try:
             os.remove("file.json")
         except IOError:
@@ -120,7 +120,7 @@ class TestAmenitySave(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        """Test saving an Amenity instance once and check if 'updated_at' has changed."""
+        """Test saving an Amenity once; 'updated_at' change."""
         am = Amenity()
         sleep(0.05)
         first_updated_at = am.updated_at
@@ -128,7 +128,7 @@ class TestAmenitySave(unittest.TestCase):
         self.assertLess(first_updated_at, am.updated_at)
 
     def test_two_saves(self):
-        """Test saving an Amenity instance twice and check if 'updated_at' has changed both times."""
+        """Test saving an Amenity twice; 'updated_at' changes."""
         am = Amenity()
         sleep(0.05)
         first_updated_at = am.updated_at
@@ -140,13 +140,13 @@ class TestAmenitySave(unittest.TestCase):
         self.assertLess(second_updated_at, am.updated_at)
 
     def test_save_with_arg(self):
-        """Test saving an Amenity instance with an argument and check if it raises a TypeError."""
+        """Test saving Amenity with arg; TypeError."""
         am = Amenity()
         with self.assertRaises(TypeError):
             am.save(None)
 
     def test_save_updates_file(self):
-        """Test saving an Amenity instance and check if the 'file.json' file is updated with its ID."""
+        """Test saving Amenity; 'file.json' updated with ID."""
         am = Amenity()
         am.save()
         amid = "Amenity." + am.id
@@ -170,7 +170,7 @@ class TestAmenityToDict(unittest.TestCase):
         self.assertIn("__class__", am.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
-        """Test that 'to_dict' includes attributes added to an Amenity instance."""
+        """Test 'to_dict' includes added attributes in Amenity."""
         am = Amenity()
         am.middle_name = "Holberton"
         am.my_number = 98
@@ -178,7 +178,7 @@ class TestAmenityToDict(unittest.TestCase):
         self.assertIn("my_number", am.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """Test that datetime attributes in 'to_dict' are represented as strings."""
+        """Test 'to_dict' datetime attributes as strings."""
         am = Amenity()
         am_dict = am.to_dict()
         self.assertEqual(str, type(am_dict["id"]))
@@ -200,7 +200,7 @@ class TestAmenityToDict(unittest.TestCase):
         self.assertDictEqual(am.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """Test that 'to_dict' and '__dict__' are not the same for an Amenity instance."""
+        """Test 'to_dict' and 'dict' difference in Amenity."""
         am = Amenity()
         self.assertNotEqual(am.to_dict(), am.__dict__)
 

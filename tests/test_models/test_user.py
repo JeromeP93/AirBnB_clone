@@ -60,14 +60,14 @@ class TestUserInstantiation(unittest.TestCase):
         self.assertNotEqual(us1.id, us2.id)
 
     def test_different_created_at_for_two_users(self):
-        """Test if the created_at attribute is different for two User instances."""
+        """Test if the created_at attribute differs between two Users."""
         us1 = User()
         sleep(0.05)
         us2 = User()
         self.assertLess(us1.created_at, us2.created_at)
 
     def test_different_updated_at_for_two_users(self):
-        """Test if the updated_at attribute is different for two User instances."""
+        """Test if the updated_at attribute differs between Users."""
         us1 = User()
         sleep(0.05)
         us2 = User()
@@ -128,7 +128,7 @@ class TestUserSave(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        """Test that calling `save()` once updates the `updated_at` attribute."""
+        """Test calling save() once updates the updated_at attribute."""
         us = User()
         sleep(0.05)
         first_updated_at = us.updated_at
@@ -136,7 +136,7 @@ class TestUserSave(unittest.TestCase):
         self.assertLess(first_updated_at, us.updated_at)
 
     def test_two_saves(self):
-        """Test that calling `save()` twice updates the `updated_at` attribute."""
+        """Test calling save() twice updates the updated_at attribute."""
         us = User()
         sleep(0.05)
         first_updated_at = us.updated_at
@@ -208,7 +208,7 @@ class TestUserToDict(unittest.TestCase):
         self.assertDictEqual(us.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """Test that the `to_dict` method does not return the object's __dict__."""
+        """Test to_dict method does not return the object's dict"""
         us = User()
         self.assertNotEqual(us.to_dict(), us.__dict__)
 

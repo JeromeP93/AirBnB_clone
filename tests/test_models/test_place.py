@@ -22,7 +22,7 @@ class TestPlaceInstantiation(unittest.TestCase):
         self.assertEqual(Place, type(Place()))
 
     def test_new_instance_stored_in_objects(self):
-        """Test that a newly created Place instance is stored in the 'objects' attribute."""
+        """Test storing a new Place instance in 'objects' attribute.."""
         self.assertIn(Place(), models.storage.all().values())
 
     def test_id_is_public_str(self):
@@ -30,11 +30,11 @@ class TestPlaceInstantiation(unittest.TestCase):
         self.assertEqual(str, type(Place().id))
 
     def test_created_at_is_public_datetime(self):
-        """Test that the 'created_at' attribute of Place is a public datetime object."""
+        """Test that 'created_at' in Place is a public datetime object."""
         self.assertEqual(datetime, type(Place().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        """Test that the 'updated_at' attribute of Place is a public datetime object."""
+        """Test that 'updated_at' in Place is a public datetime object."""
         self.assertEqual(datetime, type(Place().updated_at))
 
     def test_city_id_is_public_class_attribute(self):
@@ -73,7 +73,7 @@ class TestPlaceInstantiation(unittest.TestCase):
         self.assertNotIn("number_rooms", pl.__dict__)
 
     def test_number_bathrooms_is_public_class_attribute(self):
-        """Test that 'number_bathrooms' is a public class attribute of Place."""
+        """number_bathrooms' is a public class attribute in Place."""
         pl = Place()
         self.assertEqual(int, type(Place.number_bathrooms))
         self.assertIn("number_bathrooms", dir(pl))
@@ -172,14 +172,14 @@ class TestPlaceSave(unittest.TestCase):
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Set up by renaming 'file.json' to 'tmp' if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and renaming 'tmp' to 'file.json'."""
+        """Cleanup: Remove 'file.json' and rename 'tmp' to 'file.json'."""
         try:
             os.remove("file.json")
         except IOError:
@@ -190,7 +190,7 @@ class TestPlaceSave(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        """Test saving a Place instance once and check if 'updated_at' has changed."""
+        """Test save Place instance, 'updated_at' changes once."""
         pl = Place()
         sleep(0.05)
         first_updated_at = pl.updated_at
@@ -198,7 +198,7 @@ class TestPlaceSave(unittest.TestCase):
         self.assertLess(first_updated_at, pl.updated_at)
 
     def test_two_saves(self):
-        """Test saving a Place instance twice and check if 'updated_at' has changed both times."""
+        """Test save Place instance, 'updated_at' changes twice."""
         pl = Place()
         sleep(0.05)
         first_updated_at = pl.updated_at
@@ -210,13 +210,13 @@ class TestPlaceSave(unittest.TestCase):
         self.assertLess(second_updated_at, pl.updated_at)
 
     def test_save_with_arg(self):
-        """Test saving a Place instance with an argument and check if it raises a TypeError."""
+        """Test saving Place instance with argument raises TypeError."""
         pl = Place()
         with self.assertRaises(TypeError):
             pl.save(None)
 
     def test_save_updates_file(self):
-        """Test saving a Place instance and check if the 'file.json' file is updated with its ID."""
+        """Test save Place instance, 'file.json' updated with its ID."""
         pl = Place()
         pl.save()
         plid = "Place." + pl.id
@@ -240,7 +240,7 @@ class TestPlaceToDict(unittest.TestCase):
         self.assertIn("__class__", pl.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
-        """Test that 'to_dict' includes attributes added to a Place instance."""
+        """Test 'to_dict' includes added attributes in Place instance."""
         pl = Place()
         pl.middle_name = "Holberton"
         pl.my_number = 98
@@ -248,7 +248,7 @@ class TestPlaceToDict(unittest.TestCase):
         self.assertIn("my_number", pl.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """Test that datetime attributes in 'to_dict' are represented as strings."""
+        """Test datetime attributes in 'to_dict' represented as strings."""
         pl = Place()
         pl_dict = pl.to_dict()
         self.assertEqual(str, type(pl_dict["id"]))
@@ -270,7 +270,7 @@ class TestPlaceToDict(unittest.TestCase):
         self.assertDictEqual(pl.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """Test that 'to_dict' and '__dict__' are not the same for a Place instance."""
+        """to_dict' and 'dict' not the same for Place instance."""
         pl = Place()
         self.assertNotEqual(pl.to_dict(), pl.__dict__)
 

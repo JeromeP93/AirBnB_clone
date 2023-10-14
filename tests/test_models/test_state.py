@@ -30,11 +30,11 @@ class TestStateInstantiation(unittest.TestCase):
         self.assertEqual(str, type(State().id))
 
     def test_created_at_is_public_datetime(self):
-        """Test that the 'created_at' attribute of State is a public datetime."""
+        """Test 'created_at' attribute of State is a public datetime."""
         self.assertEqual(datetime, type(State().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        """Test that the 'updated_at' attribute of State is a public datetime."""
+        """Test 'updated_at' attribute of State is a public datetime."""
         self.assertEqual(datetime, type(State().updated_at))
 
     def test_name_is_public_class_attribute(self):
@@ -51,14 +51,14 @@ class TestStateInstantiation(unittest.TestCase):
         self.assertNotEqual(st1.id, st2.id)
 
     def test_different_created_at_for_two_states(self):
-        """Test that two instances of State have different 'created_at' values."""
+        """Test different 'created_at' values of two State instances."""
         st1 = State()
         sleep(0.05)
         st2 = State()
         self.assertLess(st1.created_at, st2.created_at)
 
     def test_different_updated_at_for_two_states(self):
-        """Test that two instances of State have different 'updated_at' values."""
+        """Test different 'updated_at' values of two State instances."""
         st1 = State()
         sleep(0.05)
         st2 = State()
@@ -102,14 +102,14 @@ class TestStateSave(unittest.TestCase):
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Rename 'file.json' to 'tmp' for test setup if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and restoring 'tmp'."""
+        """Remove 'file.json' and restore 'tmp' for test cleanup."""
         try:
             os.remove("file.json")
         except IOError:
@@ -128,7 +128,7 @@ class TestStateSave(unittest.TestCase):
         self.assertLess(first_updated_at, st.updated_at)
 
     def test_two_saves(self):
-        """Test that consecutive 'save' calls update the 'updated_at' attribute."""
+        """Test consecutive 'save' calls updating 'updated_at' attribute."""
         st = State()
         sleep(0.05)
         first_updated_at = st.updated_at
@@ -178,7 +178,7 @@ class TestStateToDict(unittest.TestCase):
         self.assertIn("my_number", st.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """Test that datetime attributes in 'to_dict' are represented as strings."""
+        """Test datetime attributes in 'to_dict' are represented as strings."""
         st = State()
         st_dict = st.to_dict()
         self.assertEqual(str, type(st_dict["id"]))
@@ -200,7 +200,7 @@ class TestStateToDict(unittest.TestCase):
         self.assertDictEqual(st.to_dict(), tdict)
 
     def test_contrast_to_dict_and_dunder_dict(self):
-        """Test that 'to_dict' and '__dict__' are not the same for a State instance."""
+        """Test 'to_dict' and 'dict' difference in a State instance."""
         st = State()
         self.assertNotEqual(st.to_dict(), st.__dict__)
 

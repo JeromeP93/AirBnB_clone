@@ -22,7 +22,7 @@ class TestBaseModelInstantiation(unittest.TestCase):
         self.assertEqual(BaseModel, type(BaseModel()))
 
     def test_new_instance_stored_in_objects(self):
-        """Test that a new BaseModel instance is stored in the 'objects' attribute."""
+        """Test new BaseModel in 'objects' attribute."""
         self.assertIn(BaseModel(), models.storage.all().values())
 
     def test_id_is_public_str(self):
@@ -30,11 +30,11 @@ class TestBaseModelInstantiation(unittest.TestCase):
         self.assertEqual(str, type(BaseModel().id))
 
     def test_created_at_is_public_datetime(self):
-        """Test that the 'created_at' attribute of BaseModel is a public datetime object."""
+        """Test 'created_at' as public datetime in BaseModel."""
         self.assertEqual(datetime, type(BaseModel().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        """Test that the 'updated_at' attribute of BaseModel is a public datetime object."""
+        """Test 'updated_at' as public datetime in BaseModel."""
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
     def test_two_models_unique_ids(self):
@@ -44,14 +44,14 @@ class TestBaseModelInstantiation(unittest.TestCase):
         self.assertNotEqual(bm1.id, bm2.id)
 
     def test_different_created_at_for_two_models(self):
-        """Test that two BaseModel instances have different 'created_at' values."""
+        """Test different 'created_at' for two BaseModel instances."""
         bm1 = BaseModel()
         sleep(0.05)
         bm2 = BaseModel()
         self.assertLess(bm1.created_at, bm2.created_at)
 
     def test_different_updated_at_for_two_models(self):
-        """Test that two BaseModel instances have different 'updated_at' values."""
+        """Test different 'updated_at' for two BaseModel instances."""
         bm1 = BaseModel()
         sleep(0.05)
         bm2 = BaseModel()
@@ -90,7 +90,7 @@ class TestBaseModelInstantiation(unittest.TestCase):
             BaseModel(id=None, created_at=None, updated_at=None)
 
     def test_instantiation_with_args_and_kwargs(self):
-        """Test instantiation with both positional arguments and keyword arguments."""
+        """Test instantiation with args and kwargs."""
         dt = datetime.today()
         dt_iso = dt.isoformat()
         bm = BaseModel("12", id="345", created_at=dt_iso, updated_at=dt_iso)
@@ -104,7 +104,7 @@ class TestBaseModelSave(unittest.TestCase):
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Set up by renaming 'file.json' to 'tmp' if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -112,7 +112,7 @@ class TestBaseModelSave(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and renaming 'tmp' to 'file.json'."""
+        """Cleanup by removing 'file.json' and renaming 'tmp' to 'file.json'"""
         try:
             os.remove("file.json")
         except IOError:
@@ -123,7 +123,7 @@ class TestBaseModelSave(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        """Test saving a BaseModel instance once and check if 'updated_at' has changed."""
+        """Test saving a BaseModel instance; 'updated_at' change."""
         bm = BaseModel()
         sleep(0.05)
         first_updated_at = bm.updated_at
@@ -131,7 +131,7 @@ class TestBaseModelSave(unittest.TestCase):
         self.assertLess(first_updated_at, bm.updated_at)
 
     def test_two_saves(self):
-        """Test saving a BaseModel instance twice and check if 'updated_at' has changed both times."""
+        """Test saving a BaseModel instance twice; 'updated_at' changes."""
         bm = BaseModel()
         sleep(0.05)
         first_updated_at = bm.updated_at
@@ -143,13 +143,13 @@ class TestBaseModelSave(unittest.TestCase):
         self.assertLess(second_updated_at, bm.updated_at)
 
     def test_save_with_arg(self):
-        """Test saving a BaseModel instance with an argument and check if it raises a TypeError."""
+        """Test saving BaseModel with arg; TypeError."""
         bm = BaseModel()
         with self.assertRaises(TypeError):
             bm.save(None)
 
     def test_save_updates_file(self):
-        """Test saving a BaseModel instance and check if the 'file.json' file is updated with its ID."""
+        """Test saving BaseModel; 'file.json' updated with ID.."""
         bm = BaseModel()
         bm.save()
         bm_id = "BaseModel." + bm.id
@@ -174,7 +174,7 @@ class TestBaseModelToDict(unittest.TestCase):
         self.assertIn("__class__", bm.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
-        """Test that 'to_dict' includes attributes added to a BaseModel instance."""
+        """Test 'to_dict' includes added attributes in BaseModel."""
         bm = BaseModel()
         bm.name = "Holberton"
         bm.my_number = 98
@@ -182,7 +182,7 @@ class TestBaseModelToDict(unittest.TestCase):
         self.assertIn("my_number", bm.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """Test that datetime attributes in 'to_dict' are represented as strings."""
+        """Test 'to_dict' datetime attributes as strings."""
         bm = BaseModel()
         bm_dict = bm.to_dict()
         self.assertEqual(type(bm_dict["created_at"]), str)
@@ -203,7 +203,7 @@ class TestBaseModelToDict(unittest.TestCase):
         self.assertDictEqual(bm.to_dict(), t_dict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """Test that 'to_dict' and '__dict__' are not the same for a BaseModel instance."""
+        """Test 'to_dict' and 'dict' difference in BaseModel."""
         bm = BaseModel()
         self.assertNotEqual(bm.to_dict(), bm.__dict__)
 

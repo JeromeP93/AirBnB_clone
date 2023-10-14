@@ -22,7 +22,7 @@ class TestCityInstantiation(unittest.TestCase):
         self.assertEqual(City, type(City()))
 
     def test_new_instance_stored_in_objects(self):
-        """Test that a newly created City instance is stored in the 'objects' attribute."""
+        """Test that a newly created City instance is stored in 'objects'."""
         self.assertIn(City(), models.storage.all().values())
 
     def test_id_is_public_str(self):
@@ -30,11 +30,11 @@ class TestCityInstantiation(unittest.TestCase):
         self.assertEqual(str, type(City().id))
 
     def test_created_at_is_public_datetime(self):
-        """Test that the 'created_at' attribute of City is a public datetime object."""
+        """Test that 'created_at' attribute of City is a public datetime."""
         self.assertEqual(datetime, type(City().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        """Test that the 'updated_at' attribute of City is a public datetime object."""
+        """Test that 'updated_at' attribute of City is a public datetime."""
         self.assertEqual(datetime, type(City().updated_at))
 
     def test_state_id_is_public_class_attribute(self):
@@ -109,14 +109,14 @@ class TestCitySave(unittest.TestCase):
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Setup by renaming 'file.json' to 'tmp' if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and renaming 'tmp' to 'file.json'."""
+        """Cleanup by removing 'file.json' and renaming 'tmp' to 'file.json'"""
         try:
             os.remove("file.json")
         except IOError:
@@ -127,7 +127,7 @@ class TestCitySave(unittest.TestCase):
             pass
 
     def test_one_save(self):
-        """Test saving a City instance once and check if 'updated_at' has changed."""
+        """Test saving a City instance once for 'updated_at' change."""
         cy = City()
         sleep(0.05)
         first_updated_at = cy.updated_at
@@ -135,7 +135,7 @@ class TestCitySave(unittest.TestCase):
         self.assertLess(first_updated_at, cy.updated_at)
 
     def test_two_saves(self):
-        """Test saving a City instance twice and check if 'updated_at' has changed both times."""
+        """Test saving a City instance twice for 'updated_at' changes."""
         cy = City()
         sleep(0.05)
         first_updated_at = cy.updated_at
@@ -147,13 +147,13 @@ class TestCitySave(unittest.TestCase):
         self.assertLess(second_updated_at, cy.updated_at)
 
     def test_save_with_arg(self):
-        """Test saving a City instance with an argument and check if it raises a TypeError."""
+        """Test saving a City instance with argument for TypeError check."""
         cy = City()
         with self.assertRaises(TypeError):
             cy.save(None)
 
     def test_save_updates_file(self):
-        """Test saving a City instance and check if the 'file.json' file is updated with its ID."""
+        """Test saving a City instance and check 'file.json' for ID update."""
         cy = City()
         cy.save()
         cyid = "City." + cy.id
@@ -185,7 +185,7 @@ class TestCityToDict(unittest.TestCase):
         self.assertIn("my_number", cy.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
-        """Test that datetime attributes in 'to_dict' are represented as strings."""
+        """Test 'to_dict' datetime attributes as strings."""
         cy = City()
         cy_dict = cy.to_dict()
         self.assertEqual(str, type(cy_dict["id"]))
@@ -207,7 +207,7 @@ class TestCityToDict(unittest.TestCase):
         self.assertDictEqual(cy.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
-        """Test that 'to_dict' and '__dict__' are not the same for a City instance."""
+        """Test that 'to_dict' and 'dict' differ for a City instance."""
         cy = City()
         self.assertNotEqual(cy.to_dict(), cy.__dict__)
 
