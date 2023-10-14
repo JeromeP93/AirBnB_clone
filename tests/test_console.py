@@ -64,7 +64,7 @@ class TestHBNBCommandHelp(unittest.TestCase):
 
     def test_help_show(self):
         """Test the 'help' message for the 'show' command."""
-        h = """Display the string representation of a class instance of a given ID.
+        h = """Display the string representation of a class instance by its ID.
 
         Usage: show <class> <id> or <class>.show(<id>)"""
         with patch("sys.stdout", new=StringIO()) as output:
@@ -82,7 +82,7 @@ class TestHBNBCommandHelp(unittest.TestCase):
 
     def test_help_all(self):
         """Test the 'help' message for the 'all' command."""
-        h = """Display string representations of class instances or all objects.
+        h = """Display class instance representations or all objects.
 
         Usage: all or all <class> or <class>.all()"""
 

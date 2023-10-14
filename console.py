@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, arg):
-        """Display the string representation of a class instance of a given ID.
+        """Display the string representation of a class instance by its ID.
 
         Usage: show <class> <id> or <class>.show(<id>)
         """
@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
-        """Display string representations of class instances or all objects.
+        """Display class instance representations or all objects.
 
         Usage: all or all <class> or <class>.all()
         """
