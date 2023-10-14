@@ -13,6 +13,7 @@ from datetime import datetime
 from time import sleep
 from models.amenity import Amenity
 
+
 class TestAmenity_instantiation(unittest.TestCase):
     """Unit tests for instantiating the Amenity class."""
 
@@ -208,6 +209,7 @@ class TestAmenityToDict(unittest.TestCase):
         am = Amenity()
         with self.assertRaises(TypeError):
             am.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

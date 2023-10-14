@@ -22,7 +22,7 @@ class TestBaseModelInstantiation(unittest.TestCase):
         self.assertEqual(BaseModel, type(BaseModel()))
 
     def test_new_instance_stored_in_objects(self):
-        """Test that a newly created BaseModel instance is stored in the 'objects' attribute."""
+        """Test that a new BaseModel instance is stored in the 'objects' attribute."""
         self.assertIn(BaseModel(), models.storage.all().values())
 
     def test_id_is_public_str(self):
@@ -98,6 +98,7 @@ class TestBaseModelInstantiation(unittest.TestCase):
         self.assertEqual(bm.created_at, dt)
         self.assertEqual(bm.updated_at, dt)
 
+
 class TestBaseModelSave(unittest.TestCase):
     """Unit tests for the 'save' method of the BaseModel class."""
 
@@ -155,6 +156,7 @@ class TestBaseModelSave(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(bm_id, f.read())
 
+
 class TestBaseModelToDict(unittest.TestCase):
     """Unit tests for the 'to_dict' method of the BaseModel class."""
 
@@ -210,6 +212,7 @@ class TestBaseModelToDict(unittest.TestCase):
         bm = BaseModel()
         with self.assertRaises(TypeError):
             bm.to_dict(None)
+
 
 if __name__ == "__main__":
     unittest.main()

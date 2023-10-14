@@ -2,14 +2,15 @@
 """This module defines unit tests for the 'console' module.
 
 Defines eight unittest classes for testing the Console:
-- TestHBNBCommandPrompting: Test the HBNB command interpreter's prompting behavior.
+- TestHBNBCommandPrompting: Test HBNB command interpreter's prompting..
 - TestHBNBCommandHelp: Test the HBNB command interpreter's help messages.
 - TestHBNBCommandExit: Test the HBNB command interpreter's exit commands.
-- TestHBNBCommandCreate: 
-- 
-- 
-- 
-- 
+- TestHBNBCommandCreate: Test the 'create' command in HBNB interpreter.
+- TestHBNBCommandShow: Test the 'show' command in HBNB interpreter.
+- TestHBNBCommandDestroy: Test the 'destroy' command in HBNB interpreter.
+- TestHBNBCommandAll: Test the 'all' command in HBNB interpreter.
+- TestHBNBCommandUpdate: Test the 'update' command in HBNB interpreter.
+- TestHBNBCommandCount: Test the 'count' method in HBNB interpreter.
 """
 import os
 import sys
@@ -216,8 +217,8 @@ class TestHBNBCommandCreate(unittest.TestCase):
             self.assertIn(testKey, storage.all().keys())
 
 
-class TestHBNBCommand_show(unittest.TestCase):
-    """Unittests for testing show from the HBNB command interpreter"""
+class TestHBNBCommandShow(unittest.TestCase):
+    """Unit test for the 'show' command of the HBNB command interpreter"""
 
     @classmethod
     def setUp(self):
@@ -469,8 +470,8 @@ class TestHBNBCommand_show(unittest.TestCase):
             self.assertEqual(obj.__str__(), output.getvalue().strip())
 
 
-class TestHBNBCommand_destroy(unittest.TestCase):
-    """Unittests for testing destroy from the HBNB command interpreter."""
+class TestHBNBCommandDestroy(unittest.TestCase):
+    """Unit tests for the 'destroy' command of the HBNB command interpreter."""
 
     @classmethod
     def setUp(self):
@@ -723,8 +724,8 @@ class TestHBNBCommand_destroy(unittest.TestCase):
             self.assertNotIn(obj, storage.all())
 
 
-class TestHBNBCommand_all(unittest.TestCase):
-    """Unittests for testing all of the HBNB command interpreter."""
+class TestHBNBCommandAll(unittest.TestCase):
+    """Unit tests for the 'all' command of the HBNB command interpreter."""
 
     @classmethod
     def setUp(self):
@@ -869,11 +870,12 @@ class TestHBNBCommand_all(unittest.TestCase):
             self.assertNotIn("BaseModel", output.getvalue().strip())
 
 
-class TestHBNBCommand_update(unittest.TestCase):
-    """Unittests for testing update from the HBNB command interpreter."""
+class TestHBNBCommandUpdate(unittest.TestCase):
+    """Unit tests for the 'update' command in the HBNB command interpreter."""
 
     @classmethod
     def setUp(self):
+        """Set up the test environment for the 'update' command."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -882,6 +884,7 @@ class TestHBNBCommand_update(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
+        """Tear down the test environment after the 'update' command tests."""
         try:
             os.remove("file.json")
         except IOError:
@@ -1518,11 +1521,12 @@ class TestHBNBCommand_update(unittest.TestCase):
         self.assertEqual(9.8, test_dict["latitude"])
 
 
-class TestHBNBCommand_count(unittest.TestCase):
-    """Unittests for testing count method of HBNB comand interpreter."""
+class TestHBNBCommandCount(unittest.TestCase):
+    """Unit tests for the 'count' method of the HBNB command interpreter."""
 
     @classmethod
     def setUp(self):
+        """Set up the test environment for the 'count' method."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -1531,6 +1535,7 @@ class TestHBNBCommand_count(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
+        """Tear down the test environment after the 'count' method tests."""
         try:
             os.remove("file.json")
         except IOError:
@@ -1541,11 +1546,13 @@ class TestHBNBCommand_count(unittest.TestCase):
             pass
 
     def test_count_invalid_class(self):
+        """Test 'count' method with an invalid class name."""
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
             self.assertEqual("0", output.getvalue().strip())
 
     def test_count_object(self):
+        """Test 'count' method for counting objects of different classes."""
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
         with patch("sys.stdout", new=StringIO()) as output:

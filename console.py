@@ -13,6 +13,7 @@ from models.state import State
 from models.amenity import Amenity
 from models.review import Review
 
+
 def parse(arg):
     """Parse the argument and return a list of tokens."""
     curly_braces = re.search(r"\{(.*?)\}", arg)
@@ -74,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
                     return argdict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
-    
+
     def do_quit(self, arg):
         """Exit the program using the 'quit' command."""
         return True
@@ -136,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
-        """Display string representations of all instances of a given class or all instantiated objects.
+        """Display string representations of class instances or all objects.
 
         Usage: all or all <class> or <class>.all()
         """
@@ -165,7 +166,8 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def do_update(self, arg):
-        """Update a class instance of a given ID by adding or updating a given attribute key/value pair or dictionary.
+        """Update a class instance of a given ID by adding or updating
+        a given attribute key/value pair or dictionary.
 
         Usage: update <class> <id> <attribute_name> <attribute_value> or
        <class>.update(<id>, <attribute_name>, <attribute_value>) or

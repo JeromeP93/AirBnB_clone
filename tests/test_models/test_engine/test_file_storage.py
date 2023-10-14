@@ -2,25 +2,25 @@
 """This module defines unit tests for the 'file_storage' engine.
 
 Defines two unittest classes for testing the FileStorage engine:
-- TestFileStorageInstantiation: Test the instantiation of the FileStorage class.
-- TestFileStorageMethods: Test the methods of the FileStorage class.
+- TestFileStorageInstantiation: Test FileStorage class instantiation.
+- TestFileStorageMethods: Test FileStorage class methods.
 """
 import os
 import json
 import models
 import unittest
 from datetime import datetime
-from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 from models.user import User
-from models.place import Place
 from models.city import City
 from models.state import State
-from models.amenity import Amenity
+from models.place import Place
 from models.review import Review
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
-class TestFileStorage_instantiation(unittest.TestCase):
+class TestFileStorageInstantiation(unittest.TestCase):
     """Unit tests for the instantiation of the FileStorage class."""
 
     def test_FileStorage_instantiation_no_args(self):
@@ -28,29 +28,29 @@ class TestFileStorage_instantiation(unittest.TestCase):
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_FileStorage_instantiation_with_arg(self):
-        """Test that FileStorage instantiation with an argument raises a TypeError."""
+        """Test FileStorage instantiation with argument raises TypeError."""
         with self.assertRaises(TypeError):
             FileStorage(None)
 
     def test_FileStorage_file_path_is_private_str(self):
-        """Test that the 'file_path' attribute of FileStorage is a private string."""
+        """Test 'file_path' attribute of FileStorage is a private string."""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
     def testFileStorage_objects_is_private_dict(self):
-        """Test that the 'objects' attribute of FileStorage is a private dictionary."""
+        """Test 'objects' attribute of FileStorage is a private dictionary."""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
     def test_storage_initializes(self):
-        """Test that the 'models.storage' instance initializes as a FileStorage object."""
+        """Test that 'models.storage' initializes as a FileStorage object."""
         self.assertEqual(type(models.storage), FileStorage)
 
 
-class TestFileStorage_methods(unittest.TestCase):
+class TestFileStorageMethods(unittest.TestCase):
     """Unit tests for the methods of the FileStorage class."""
 
     @classmethod
     def setUp(self):
-        """Set up for test cases by renaming 'file.json' to 'tmp' if it exists."""
+        """Set up by renaming 'file.json' to 'tmp' if it exists."""
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -58,7 +58,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        """Clean up after test cases by removing 'file.json' and renaming 'tmp' to 'file.json'."""
+        """Cleanup by removing 'file.json' and renaming 'tmp'."""
         try:
             os.remove("file.json")
         except IOError:
