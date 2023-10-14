@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""unittests for models/user.py
+"""This module defines unit tests for the 'user' module.
 
-This module defines three unittest classes for testing the User model:
-- TestUser_instantiation: Test User class instantiation and its attributes.
-- TestUser_save: Test the save method of the User class.
-- TestUser_to_dict: Test the to_dict method of the User class.
+Defines three unittest classes for testing the User model:
+- TestUserInstantiation: Test User class instantiation and its attributes.
+- TestUserSave: Test the save method of the User class.
+- TestUserToDict: Test the to_dict method of the User class.
 """
 import os
 import models
@@ -14,7 +14,7 @@ from time import sleep
 from models.user import User
 
 
-class TestUser_instantiation(unittest.TestCase):
+class TestUserInstantiation(unittest.TestCase):
     """Test User class instantiation and attributes."""
 
     def test_no_args_instantiates(self):
@@ -59,14 +59,14 @@ class TestUser_instantiation(unittest.TestCase):
         us2 = User()
         self.assertNotEqual(us1.id, us2.id)
 
-    def test_two_users_different_created_at(self):
+    def test_different_created_at_for_two_users(self):
         """Test if the created_at attribute is different for two User instances."""
         us1 = User()
         sleep(0.05)
         us2 = User()
         self.assertLess(us1.created_at, us2.created_at)
 
-    def test_two_users_different_updated_at(self):
+    def test_different_updated_at_for_two_users(self):
         """Test if the updated_at attribute is different for two User instances."""
         us1 = User()
         sleep(0.05)
@@ -105,7 +105,7 @@ class TestUser_instantiation(unittest.TestCase):
             User(id=None, created_at=None, updated_at=None)
 
 
-class TestUser_save(unittest.TestCase):
+class TestUserSave(unittest.TestCase):
     """Tests for the save method of the User class."""
 
     @classmethod
@@ -162,7 +162,7 @@ class TestUser_save(unittest.TestCase):
             self.assertIn(usid, f.read())
 
 
-class TestUser_to_dict(unittest.TestCase):
+class TestUserToDict(unittest.TestCase):
     """Tests for the to_dict method of the User class."""
 
     def test_to_dict_type(self):
