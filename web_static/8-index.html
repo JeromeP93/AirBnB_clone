@@ -1,134 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>AirBnB clone</title>
-		<link rel="stylesheet" href="styles/4-common.css">
-		<link rel="stylesheet" href="styles/3-header.css">
-		<link rel="stylesheet" href="styles/3-footer.css">
-		<link rel="stylesheet" href="styles/6-filters.css">
-		<link rel="stylesheet" href="styles/8-places.css">
-		<link rel="icon" href="images/icon.png">
-	</head>
-	<body>
-		<header>
-		</header>
-		<div class="container">
-			<section class="filters">
-				<div class="locations">
-					<h3>States</h3>
-					<h4>California, Arizona,...</h4>
-					<ul class="popover">
-						<li><h2>Arizona</h2>
-						<ul>
-							<li>Page 1</li>
-							<li>Page 2</li>
-						</ul></li>
-						<li><h2>California</h2>
-						<ul>
-							<li>San Francisco</li>
-							<li>Los Altos</li>
-						</ul></li>
-					</ul>
-				</div>
-				<div class="amenities">
-					<h3>Amenities</h3>
-					<h4>Internet, Kitchen,...</h4>
-					<ul class="popover">
-						<li>Internet</li>
-						<li>TV</li>
-						<li>Kitchen</li>
-						<li>Iron</li>
-					</ul>
-				</div>
-				<button>Search</button>
-			</section>
-			<section class="places">
-				<h1>Places</h1>
-				<article>
-					<h2>My home</h2>
-					<div class="price_by_night">
-						<p>$80</p>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<div class="guest_image"></div>
-							<p>2 Guests</p>
-						</div>
-						<div class="number_rooms">
-							<div class="bed_image"></div>
-							<p>1 Bedroom</p>
-						</div>
-						<div class="number_bathrooms">
-							<div class="bath_image"></div>
-							<p>1 Bathroom</p>
-						</div>
-					</div>
-					<div class="user">
-						<p><b>Owner: </b>Siba Smith</p>
-					</div>
-					<div class="description">
-						<p>Stay at our Artsy home in Arizona. One bedroom available in our home with kids and two cats. The place is fully furnished and move in ready. Renters beware of a nice backyard view. We live close to everything.</p>
-					</div>
-				</article>
-				<article>
-					<h2>Tiny house</h2>
-					<div class="price_by_night">
-						<p>$65</p>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<div class="guest_image"></div>
-							<p>4 Guests</p>
-						</div>
-						<div class="number_rooms">
-							<div class="bed_image"></div>
-							<p>2 Bedroom</p>
-						</div>
-						<div class="number_bathrooms">
-							<div class="bath_image"></div>
-							<p>1 Bathroom</p>
-						</div>
-					</div>
-					<div class="user">
-						<p><b>Owner: </b>Sabiha Remone</p>
-					</div>
-					<div class="description">
-						<p>The bedroom is furnished, has Internet, a desk with a comfy chair, and brand new king-size mattress lies on the floor. You are welcome to use the kitchen and the living room. Washer and Dryer are in Unit. I have also space in the garage if you need to park a motorcycle.</p>
-					</div>
-				</article>
-				<article>
-					<h2>A suite</h2>
-					<div class="price_by_night">
-						<p>$190</p>
-					</div>
-					<div class="information">
-						<div class="max_guest">
-							<div class="guest_image"></div>
-							<p>6 Guests</p>
-						</div>
-						<div class="number_rooms">
-							<div class="bed_image"></div>
-							<p>3 Bedroom</p>
-						</div>
-						<div class="number_bathrooms">
-							<div class="bath_image"></div>
-							<p>2 Bathroom</p>
-						</div>
-					</div>
-					<div class="user">
-						<p><b>Owner: </b>Aisha Brown</p>
-					</div>
-					<div class="description">
-						<p>Fully rehabbed Victorian changed to swetan on the outside. Each bedroom has its own full bath. This room is on the 1st Floor - more like a ranch house. See the pictures. consists of a classy bathroom. And use of the kitchen, which is recently remodeled, for coffee or tea in the morning. The living room has a couch, chairs and a table. It is usually empty.<p></p>
-					</div>
-				</article>
-			</section>
-		</div>
-		<footer>
-			<p>
-				Best School
-			</p>
-		</footer>
-	</body>
+
+<head>
+    <title>AirBnb Clone</title>
+    <link rel="stylesheet" href="styles/4-common.css">
+    <link rel="stylesheet" href="styles/3-header.css">
+    <link rel="stylesheet" href="styles/3-footer.css">
+    <link rel="stylesheet" href="styles/6-filters.css">
+    <link rel="stylesheet" href="styles/8-places.css">
+    <link rel="icon" href="images/icon.png" type="image/png">
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <button type="button">Search</button>
+            <div class="locations">
+                <h3>States</h3>
+                <h4>California, Arizona...</h4>
+                <ul class="popover">
+                    <li>
+                        <h2>Arizona:</h2>
+                    </li>
+                    <li>
+                        <ul class="popover_list">
+                            <li>Page</li>
+                            <li>Page2</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>California:</h2>
+                    </li>
+                    <li>
+                        <ul class="popover_list">
+                            <li>San Francisco</li>
+                            <li>Los Altos</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>Internet, Kitchen...</h4>
+                <ul class="popover">
+                    <li>Internet</li>
+                    <li>TV</li>
+                    <li>Kitchen</li>
+                    <li>Iron</li>
+                </ul>
+            </div>
+        </section>
+        <section class="places">
+            <div class="places_title">
+                <h1>Places</h1>
+            </div>
+            <div class="articles">
+                <article>
+                    <div class="price_title">
+                        <div class="article_title">
+                            <h2>My Home</h2>
+                        </div>
+                        <div class="price_by_night">
+                            <div class="price">
+                                $80
+                            </div>
+                        </div>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <div class="guest_icon">
+                            </div>
+                            <div class="guest_number">
+                                <h2>2 Guests</h2>
+                            </div>
+                        </div>
+                        <div class="number_rooms">
+                            <div class="rooms_icon">
+                            </div>
+                            <div class="rooms_number">
+                                <h2>1 Bedroom</h2>
+                            </div>
+                        </div>
+                        <div class="number_bathrooms">
+                            <div class="bathrooms_icon">
+                            </div>
+                            <div class="bathrooms_number">
+                                <h2>1 Bathroom</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <b>Owner:</b> John Lennon
+                    </div>
+                    <div class="description">
+                        This is a lovely 1 bedroom and 1 bathroom apartment than can
+                        accomodate 2 people. It locates at center of Shangai
+                        and next to subway line 1, 1 stop to People Square, 2 stops to
+                        Bund, 3 stops to Jingan Temple.
+                    </div>
+                </article>
+                <article>
+                    <div class="price_title">
+                        <div class="article_title">
+                            <h2>Tiny House</h2>
+                        </div>
+                        <div class="price_by_night">
+                            <div class="price">
+                                $80
+                            </div>
+                        </div>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <div class="guest_icon">
+                            </div>
+                            <div class="guest_number">
+                                <h2>4 Guests</h2>
+                            </div>
+                        </div>
+                        <div class="number_rooms">
+                            <div class="rooms_icon">
+                            </div>
+                            <div class="rooms_number">
+                                <h2>2 Bedrooms</h2>
+                            </div>
+                        </div>
+                        <div class="number_bathrooms">
+                            <div class="bathrooms_icon">
+                            </div>
+                            <div class="bathrooms_number">
+                                <h2>1 Bathroom</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <b>Owner:</b> Adrienne
+                    </div>
+                    <div class="description">
+                        Our place is a private, affordable stand-alone guest house
+                        centrally located just minutes to French Quarters, downtown,
+                        The Fair Groundz(Jazz Fest) and City Park. The guest house is
+                        a quaint, 400 square ft. with a full bath, mini kitchen, & living
+                        room. The extra high cellings make the home feel more
+                        spacious. The sofa converts to a bed also. We have a hand
+                        made counter area that adds character to the room and a
+                        great porch/deck to relax on and have a glass of Merlot.
+
+                    </div>
+                </article>
+                <article>
+                    <div class="price_title">
+                        <div class="article_title">
+                            <h2>A Suite</h2>
+                        </div>
+                        <div class="price_by_night">
+                            <div class="price">
+                                $190
+                            </div>
+                        </div>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <div class="guest_icon">
+                            </div>
+                            <div class="guest_number">
+                                <h2>2 Guests</h2>
+                            </div>
+                        </div>
+                        <div class="number_rooms">
+                            <div class="rooms_icon">
+                            </div>
+                            <div class="rooms_number">
+                                <h2>1 Bedroom</h2>
+                            </div>
+                        </div>
+                        <div class="number_bathrooms">
+                            <div class="bathrooms_icon">
+                            </div>
+                            <div class="bathrooms_number">
+                                <h2>1 Bathroom</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <b>Owner:</b> Ayomide Suara
+                    </div>
+                    <div class="description">
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+    <footer>
+        Best School
+    </footer>
+</body>
+
 </html>
